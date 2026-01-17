@@ -7,47 +7,230 @@ html {
 
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 #hero {
   height: 100vh;
-
-  background-color: azure;
+  background-color: #2a2c3a;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
 
+#hero::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: drift 20s linear infinite;
+}
+
+@keyframes drift {
+  0% {transform: translate(0, 0);}
+  100% {transform: translate(50px, 50px);}
+}
+
+#random-display {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px #151515;
+  margin-bottom: 30px;
+  min-width: 300px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+#random-display.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#random-display img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#random-display h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+#random-display p {
+  margin: 0;
+  color: #666;
 }
 
 #hero button {
-  padding: 30px;
-  border: 2px solid lime;
-  border-radius: 8px;
-  background-color: #baffa5;
-  transition: background-color .15s ease;
+  padding: 20px 40px;
+  border: 4px solid #4ade80;
+  border-radius: 12px;
+  background-color: #22c55e;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease;
   cursor: pointer;
+  box-shadow: 0 4px 20px #22c55e66;
+  z-index: 10;
+}
+
+#hero button:hover {
+  background-color: #16a34a;
+  transform: translateY((-2px));
+  box-shadow: 0 6px 30px #22c55e80;
+}
+
+#hero button:active {
+  transform: translateY(0);
+}
+
+#hero button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#catalog-section {
+  padding: 60px 20px;
+  background-color: #f8fafc;
+}
+
+.catalog-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.catalog-header h1 {
+  font-size: 36px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.catalog-controls {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#search-bar {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+#search-bar:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.filter-panel {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.filter-btn:hover {
+  border-color: #667eea;
+}
+
+.filter-btn:active {
+  background-color: #667eea;
+  color: #fff;
+  border-color: #667eea;
 }
 
 #catalog {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 10px;
 }
 
 .catalog-item {
-  width: 200px;
-  height: 250px;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 2px solid #000;
-  border-radius: 5px;
-  padding: 8px;
-  margin: 10px;
+  /* align-items: center; */
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.catalog-item button {
-  cursor: pointer;
+.catalog-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px #00001a;
+  border-color: #667eea;
+}
+
+.catalog-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.catalog-item h3 {
+  margin: 0 0 8px 0;
+  color: #1e293b;
+  font-size: 18px;
+}
+
+.catalog-item p {
+  margin: 0 0 10px 0;
+  color: #64748b;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+.catalog-item .category {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #ede9fe;
+  color: #7c3aed;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 18px;
 }

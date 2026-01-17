@@ -101,7 +101,7 @@ function initializeFilters() {
 }
 
 // Search functionality
-document.getElementById('searchBar').addEventListener('input', function(e) {
+document.getElementById('search-bar').addEventListener('input', function(e) {
     currentSearch = e.target.value;
     renderCatalog();
 });
@@ -109,7 +109,7 @@ document.getElementById('searchBar').addEventListener('input', function(e) {
 // Randomisation function
 document.getElementById('randomiseBtn').addEventListener('click', function() {
     const btn = this;
-    const display = document.getElementById('randomDisplay');
+    const display = document.getElementById('random-display');
     
     btn.disabled = true;
     btn.textContent = 'Randomising...';
@@ -121,9 +121,9 @@ document.getElementById('randomiseBtn').addEventListener('click', function() {
     const cycleInterval = setInterval(() => {
         const randomItem = catalogData[Math.floor(Math.random() * catalogData.length)];
         
-        document.getElementById('displayImg').src = randomItem.image;
-        document.getElementById('displayTitle').textContent = randomItem.title;
-        document.getElementById('displayDesc').textContent = randomItem.description;
+        document.getElementById('display-img').src = randomItem.image;
+        document.getElementById('display-title').textContent = randomItem.title;
+        document.getElementById('display-desc').textContent = randomItem.description;
         display.classList.add('show');
         
         cycles++;
